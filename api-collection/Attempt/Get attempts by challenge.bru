@@ -1,0 +1,19 @@
+meta {
+  name: Get attempts by challenge
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/attempt/challenge/488b2bf7-4c36-4423-b9b2-e3c6c7e127bd
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "score":100,
+    "answers": ["879e6296-1d59-4249-965c-262508516bed", "6ec8c286-8c42-4400-a603-186d9d5594e4", "71f3576b-9711-4323-bcd0-bd0484971722", "de8f576f-6582-4dd5-a9b5-f08f9be55376", "fae9fda6-fc47-41bb-8e2e-66ac84319f8c", "c6b20346-cb86-4da9-ba49-cf9e61b3babb", "6b635de4-729f-4e54-81ce-6d03a0b5766d"],
+    "challenge" : "488b2bf7-4c36-4423-b9b2-e3c6c7e127bd" 
+  }
+}

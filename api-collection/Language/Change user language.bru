@@ -1,0 +1,17 @@
+meta {
+  name: Change user language
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/language
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "locale": "es"
+  }
+}

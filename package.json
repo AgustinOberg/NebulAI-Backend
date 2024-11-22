@@ -1,0 +1,44 @@
+{
+  "name": "nebulai-backend",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "db:generate": "drizzle-kit generate",
+    "db:up": "drizzle-kit up",
+    "db:migrate": "bunx wrangler d1 migrations apply workers-hono-api-example --local",
+    "db:admin": "drizzle-kit up"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@hono/zod-validator": "^0.4.1",
+    "@libsql/client": "^0.14.0",
+    "base64-arraybuffer": "^1.0.2",
+    "buffer": "^6.0.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.36.1",
+    "fast-xml-parser": "^4.5.0",
+    "hono": "^4.6.9",
+    "jose": "^5.9.6",
+    "js-base64": "^3.7.7",
+    "jszip": "^3.10.1",
+    "mammoth": "^1.8.0",
+    "pdf-lib": "^1.17.1",
+    "unpdf": "^0.12.1",
+    "uuid": "^11.0.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241022.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "drizzle-kit": "^0.28.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "tsx": "^4.19.2",
+    "wrangler": "^3.83.0"
+  },
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
+}

@@ -7,9 +7,9 @@ compatibility_flags = [ "nodejs_compat" ]
 # [vars]
 # MY_VAR = "my-variable"
 
-# [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[[kv_namespaces]]
+binding = "PROMPTS"
+id = "${PROMPTS_NAMESPACE_ID}"
 
 # [[r2_buckets]]
 # binding = "MY_BUCKET"

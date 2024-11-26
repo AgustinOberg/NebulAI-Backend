@@ -11,6 +11,7 @@ export const ErrorMessages = {
   UNHANDLED_ERROR: 'An unhandled error occurred',
   INVALID_PRIVATE_KEY: 'Invalid service account private key',
   NOT_AUTHORIZED: 'Not authorized to access this resource',
+  ERROR_PROMPT: 'Error fetching prompt',
 };
 
 interface ErrorArgs {

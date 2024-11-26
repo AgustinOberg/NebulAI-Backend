@@ -1,7 +1,9 @@
 import { getGeminiModel } from '@/config/gemini';
-import { AI_INSTRUCTIONS } from '@/constants/ai.constants';
 import { GEMINI_CHALLENGE_CONFIG } from '@/constants/gemini.constants';
-import { Language } from '@/constants/language.constants';
+import {
+  Language,
+  LANGUAGE_TRANSLATIONS,
+} from '@/constants/language.constants';
 import {
   challenges,
   questions as questionsTable,
@@ -25,6 +27,10 @@ type OptionData = {
   description: string;
   isCorrect: boolean;
 };
+type Ai = {
+  key: string;
+  prompt: string;
+};
 
 type QuestionData = {
   question: string;
@@ -38,16 +44,22 @@ type ChallengeData = {
   difficulty: string;
 };
 
+const getAiInstructions = (
+  rawPrompt: string,
+  difficulty: number,
+  language: Language,
+) => {
+  return rawPrompt
+    .replace('{{output_language}}', LANGUAGE_TRANSLATIONS[language])
+    .replace('{{difficulty}}', difficulty.toString());
+};
+
 const generateChallengeInfo = async (
   payload: CreateChallengePayload,
-  language: Language = 'es',
-  apiKey: string,
+  { key, prompt }: Ai,
 ): Promise<{ response: GeminiChallengeResponse; totalTokens: number }> => {
-  const geminiModel = getGeminiModel(apiKey);
-  const contents = createContent(
-    payload.content,
-    AI_INSTRUCTIONS(payload.difficulty, language),
-  );
+  const geminiModel = getGeminiModel(key);
+  const contents = createContent(payload.content, prompt);
   const { totalTokens } = await geminiModel.countTokens({ contents });
 
   const result = await geminiModel.generateContent({
@@ -63,13 +75,11 @@ const generateChallengeInfo = async (
 
 const generateChallenge = async (
   payload: CreateChallengePayload,
-  user: User,
-  apiKey: string,
+  aiConfig: Ai,
 ): Promise<ChallengeData> => {
   const { response, totalTokens } = await generateChallengeInfo(
     payload,
-    user.locale as Language,
-    apiKey,
+    aiConfig,
   );
 
   const questions: QuestionData[] =
@@ -260,4 +270,5 @@ export default {
   createChallenge,
   getAllChallenges,
   getChallengeById,
+  getAiInstructions,
 };
